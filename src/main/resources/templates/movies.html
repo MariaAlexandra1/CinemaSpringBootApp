@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="~{fragments :: head}"></head>
+
+<body>
+<div th:replace="~{fragments :: header}"></div>
+
+<div class="body">
+    <h1>Movies</h1>
+    <div th:replace="~{fragments :: movies_table}"></div>
+</div>
+
+<div>
+    <a th:href="@{/movies/create}" class="btn btn-success">
+        <button type="button" class="btn btn-success">Create Movie</button>
+    </a>
+    <a th:href="@{/movies/delete}" class="btn btn-success">
+        <button type="button" class="btn btn-success">Delete Movie</button>
+    </a>
+    <a th:href="@{/movies/update1}" class="btn btn-success">
+        <button type="button" class="btn btn-success">Update Movie</button>
+    </a>
+</div>
+
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>

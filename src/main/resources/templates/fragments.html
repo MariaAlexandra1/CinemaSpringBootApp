@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+    <title th:text="${title}">Title</title>
+</head>
+
+<div class="header" th:fragment="header">
+    <p><a href="/login"><span sec:authorize="!isAuthenticated()">Login</span></a>
+        <a href="/register"><span sec:authorize="!isAuthenticated()">Register</span></a>
+        <a class="header" href="/logout"><span sec:authorize="isAuthenticated()">Logout</span></a>
+        <a class="header" href="/"><span sec:authorize="isAuthenticated()">Home</span></a>
+        <a class="header" href="/movies"><span sec:authorize="isAuthenticated()">Movies</span></a>
+        <a class="header" href="/users"><span sec:authorize="isAuthenticated() and hasAuthority('ADMIN')">Users</span></a>
+        <a class="header" href="/roles"><span sec:authorize="isAuthenticated() and hasAuthority('ADMIN')">Roles</span></a>
+    </p>
+</div>
+
+<div th:fragment="roles_table">
+    <table>
+        <tr>
+            <th>Authority</th>
+        </tr>
+        <tr th:each="role : ${roles}">
+            <td th:text="${role.role}"></td>
+        </tr>
+    </table>
+</div>
+
+<div th:fragment="users_table">
+    <table>
+        <tr>
+            <th>Select</th>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>E-mail address</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.emailAddress}"></td>
+        </tr>
+    </table>
+</div>
+<div th:fragment="movies_table">
+    <table>
+        <tr>
+            <th>Title</th>
+        </tr>
+        <tr th:each="movie : ${movies}">
+            <td> <a th:text="${movie.title}"  th:href="'movies/detail?movieId=' + ${movie.movieDetails.id}"></a></td>
+        </tr>
+    </table>
+</div>
+<div th:fragment="movie_details_table">
+    <table>
+        <tr>
+            <th>Genre</th>
+            <th>Duration</th>
+            <th>Ticket Price</th>
+        </tr>
+        <tr>
+            <td th:text="${movieDetails.genre}"></td>
+            <td th:text="${movieDetails.duration}"></td>
+            <td th:text="${movieDetails.ticketPrice}"></td>
+        </tr>
+    </table>
+</div>
+<div th:fragment="footer">
+    <div class="footer"><p class="footer">Inginerie Software 2024</p></div>
+</div>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="~{fragments :: head}"></head>
+
+<body>
+<div class="body">
+  <h1>Delete Users</h1>
+</div>
+
+<div>
+  <form th:action="@{/users/delete}" method="post">
+    <table>
+      <tr>
+        <th>Select</th>
+        <th>Username</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>E-mail address</th>
+      </tr>
+      <tr th:each="user : ${users}">
+        <td>
+          <input type="checkbox" name="selectedUsername" th:value="${user.username}">
+        </td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.emailAddress}"></td>
+      </tr>
+    </table>
+    <button type="submit" class="btn btn-danger">Delete Selected User</button>
+  </form>
+</div>
+
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>

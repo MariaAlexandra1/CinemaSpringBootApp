@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="~{fragments :: head}"></head>
+
+<body>
+<div class="body">
+    <h1>Delete Movie</h1>
+
+    <form th:action="@{/movies/update1}" method="post" th:object="${movie}" class="px-4">
+        <div>
+            <th:block th:each="movie : ${movies}">
+                <div class="form-group">
+                    <label>
+                        <span th:text="${movie.title()}"></span>
+                        <input type="checkbox" name="movieId" th:value="${movie.movieDetails.id}" class="form-control">
+                    </label>
+                </div>
+            </th:block>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-success" th:href="@{/movies/update2}">Update Movie</button>
+        </div>
+    </form>
+</div>
+
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>
